@@ -1,6 +1,7 @@
 const taskInputButton = document.querySelector('#task-button-input') ; 
 const ulListTask = document.querySelector('#list-task') ;
 
+
 function createTask (taskInputValue){
     $.ajax({
         url: '/task',
@@ -18,6 +19,21 @@ function createTask (taskInputValue){
 
 }
 
+function getAllTask (){
+    $.ajax({
+        url: '/task',
+        type: 'GET',
+        dataType  : 'json',
+        success: function(respuesta) {
+            console.log(respuesta)
+            console.log(respuesta.name);
+        },
+        error: function() {
+            console.error("No es posible completar la operación");
+        }
+    });
+
+}
 
 
 function taskSubmit(){
@@ -32,5 +48,8 @@ function taskSubmit(){
     }
 }
 
+console.log(getAllTask())
 
+
+// ulListTask.addEventListener('load',)
 taskInputButton.addEventListener('click', taskSubmit);

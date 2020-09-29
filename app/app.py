@@ -8,7 +8,7 @@ app = Flask(__name__,
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'
 # db = Handling_task_list()
 #db.add_task({"task":"Do my home work"})
-api = Api(app)
+api = Api(app)git a
 
     #----------------------------RENDER_TEMPLATE------------------------------#
 
