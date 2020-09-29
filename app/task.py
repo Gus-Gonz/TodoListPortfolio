@@ -37,7 +37,7 @@ class Db_sqlite ():
 
         for row in result :
             tasks.append({"id": row[0],
-                          "Task" : row [1]})
+                          "task" : row [1]})
 
         return tasks
 
@@ -50,20 +50,23 @@ class Db_sqlite ():
         connection.commit()
         connection.close()
 
+    def modify_task (self,task_id,new_task):
+        connection = sqlite3.connect("data.db")
+        cursor = connection.cursor()
+        query = "UPDATE task SET task=? WHERE id=?"
+        cursor.execute(query, (new_task,task_id))
+        connection.commit()
+        connection.close()
+
+
     def delete_task(self, task_id):
-        _id = task_id['id']
-        print(_id)
-        if self.find_by_id(_id) :
-            connection = sqlite3.connect("data.db")
-            cursor = connection.cursor()
-            query = "DELETE FROM task WHERE id=? "
-            cursor.execute(query, (_id,))
-            print(_id)
-            connection.commit()
-            connection.close()
-
-
-
+        connection = sqlite3.connect("data.db")
+        cursor = connection.cursor()
+        query = "DELETE FROM task WHERE id=? "
+        cursor.execute(query, (task_id,))
+        print(task_id)
+        connection.commit()
+        connection.close()
 
 
 db = Db_sqlite()

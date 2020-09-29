@@ -1,7 +1,6 @@
 from flask_restful import Resource,reqparse
 from app.task import db
 
-
 class Handling_task_list (Resource):
 
     def get (self):
@@ -17,7 +16,16 @@ class Handling_task_list (Resource):
         return {"message":"New task added"}, 201
 
     def put (self):
-        pass
+        parser = reqparse.RequestParser()
+        parser.add_argument('id', required=True, help='This file cannot be left blank!')
+        parser.add_argument('task', required=True, help='This file cannot be left blank!')
+        task_id = parser.parse_args()['id']
+        new_task = parser.parse_args()['task']
+        if db.find_by_id(task_id):
+            db.modify_task(task_id,new_task)
+            return {'message': 'Task modify without issues.'}
+
+        return {'message': 'Task not found.'}, 404
 
     def delete (self):
         parser = reqparse.RequestParser()
