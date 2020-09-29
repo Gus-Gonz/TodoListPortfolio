@@ -8,9 +8,9 @@ function createTask (taskInputValue){
         type: 'POST',
         dataType  : 'json',
         data      : {"task" : taskInputValue},
-        success: function(respuesta) {
-            console.log(respuesta)
-            console.log(respuesta.name);
+        success: function(answer) {
+            console.log(answer)
+
         },
         error: function() {
             console.error("No es posible completar la operación");
@@ -18,38 +18,42 @@ function createTask (taskInputValue){
     });
 
 }
+
+function taskSubmit(){
+    let taskInputValue = document.getElementById('task-input').value;
+    console.log(taskInputValue);
+    if (taskInputValue) {
+        showTaskList(taskInputValue);
+        createTask(taskInputValue);
+    }
+}
+
 
 function getAllTask (){
     $.ajax({
         url: '/task',
         type: 'GET',
         dataType  : 'json',
-        success: function(respuesta) {
-            console.log(respuesta)
-            console.log(respuesta.name);
+        success: function(answer) {
+            console.log(answer);
+            for (task of answer){
+                showTaskList(task.task);
+            }
         },
         error: function() {
             console.error("No es posible completar la operación");
         }
     });
+}
+
+function showTaskList(taskInputValue){
+    ulListTask.appendChild(document.createElement("li"));
+    const newLi =ulListTask.lastElementChild;
+    newLi.textContent = taskInputValue;
 
 }
 
 
-function taskSubmit(){
-    let taskInputValue = document.getElementById('task-input').value;
-    console.log(taskInputValue);
-    if (taskInputValue) {
-        ulListTask.appendChild(document.createElement("li"));
-        const newLi =ulListTask.lastElementChild;
-        newLi.textContent = taskInputValue;
-        createTask(taskInputValue)
-        
-    }
-}
 
-console.log(getAllTask())
-
-
-// ulListTask.addEventListener('load',)
+window.addEventListener('load',getAllTask)
 taskInputButton.addEventListener('click', taskSubmit);
