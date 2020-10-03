@@ -2,18 +2,21 @@
     <head>
         <!DOCTYPE html>
         <title>To-do List</title>
+
+        <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="static/app.js" defer></script>
+        <script src="static/events.js" defer ></script>
+        <link rel="stylesheet" href="static/main.css"/>
+
     </head>
     <body>
         <div>
-            <span>
-                <div>
-                    <ul id="list-task">
-                    </ul>
-                </div>
+            <span id= "list-wraper" >
+                <ul id="list-task">
+                </ul>
             </span>
-            <span>
+            <span id = "submit-wraper">
                 <div id="task-from">
                     <input id="task-input" type="text" placeholder="Add your new task"> 
                     </input>
