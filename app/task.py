@@ -11,7 +11,6 @@ class Db_sqlite ():
 
         create_table = "CREATE TABLE IF NOT EXISTS task (id INTEGER PRIMARY KEY, task TEXT )"  # Agregar owner text y completed INT
         cursor.execute(create_table)
-
         connection.commit()
         connection.close()
 
@@ -47,8 +46,13 @@ class Db_sqlite ():
         query = "INSERT INTO task(task) VALUES (?)"
         cursor.execute(query,(task_info['task'],))
 
+        new_query = "SELECT * FROM task WHERE task=?"
+        result = cursor.execute(new_query,(task_info['task'],))
         connection.commit()
-        connection.close()
+
+        for row in result:
+            connection.close()
+            return {"message": "New task added", "id": str(row[0])}
 
     def modify_task (self,task_id,new_task):
         connection = sqlite3.connect("data.db")

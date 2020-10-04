@@ -1,26 +1,57 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
     font-family: Georgia, serif;
-    font-size: 18px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
+    font-size: 30px;
+    letter-spacing: 4px;
+    word-spacing: 4px;
 
     background-color:skyblue ;
     background: #CE36B5;
     background: linear-gradient(45deg, #CE36B5 0%, #670AA4 51%, #C50C41 100%);
 }
 
+.h2 {
+    color: whitesmoke;
+    text-align: center;
+}
+
 #list-task{
-    margin: 2%;
+    margin: 8%;
+    margin-top: 5%;
+    margin-bottom: 2%;
     border: 9px groove rgba(97,73,73,0.61);
     border-radius: 10%;
     background-color: white;
     padding-bottom: 5%;
     padding-top: 3%;
+    padding-left: 5%;
+    padding-right: 5% ;
 }
 
 .task {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: 80% 25%;
+    margin-right: 7%;
+
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;    
+    padding-top: 5px;
 
 }
 
@@ -29,9 +60,34 @@ body {
 }
 
 .button-wrapers {
-    position: fixed;
-    right: 10%;
+    position: relative;
+    overflow:hidden;
+    float: right;
+    height: auto;
+
 
 } 
 
 
+.list-head {
+
+    margin-right: 7%;
+
+    border-bottom: 1px dotted black;
+    padding-bottom: 5px;    
+    padding-top: 5px;
+}
+.submit-wraper{
+    display: flex;  
+}
+
+#task-form{
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+#task-input {
+    height: 100%;
+    
+
+}

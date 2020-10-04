@@ -11,9 +11,9 @@ class Handling_task_list (Resource):
         parser.add_argument('task', required=True, help='This file cannot be left blank!')
         #print(parser.parse_args())
         task_info = parser.parse_args()
-        db.add_task(task_info)
+        result = db.add_task(task_info)
 
-        return {"message":"New task added"}, 201
+        return {"message":"New task added","id":result['id']}, 201
 
     def put (self):
         parser = reqparse.RequestParser()

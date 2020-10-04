@@ -21,12 +21,12 @@ function showTaskList(taskValue,taskId){
     ulListTask.appendChild(document.createElement("li"));
     const newLi =ulListTask.lastElementChild;
     newLi.appendChild(document.createElement("div"));
-    newLi.setAttribute('class','task')
+    newLi.setAttribute('class','task');
 
     const newDiv = newLi.lastElementChild;
     newDiv.innerHTML = taskValue;
     newDiv.setAttribute('id',taskId);
-    newDiv.setAttribute('class','task-info')
+    newDiv.setAttribute('class','task-info');
 
     newLi.appendChild(document.createElement("span"));
     const newSpan = newLi.lastElementChild;
@@ -34,7 +34,7 @@ function showTaskList(taskValue,taskId){
 
     newSpan.appendChild(document.createElement("button"));  //create the button EDIT
     const newButtomEdit = newSpan.lastElementChild;
-    newButtomEdit.setAttribute('class','edit-button')
+    newButtomEdit.setAttribute('class','edit-button');
     newButtomEdit.addEventListener('click',editTask);
 
     newButtomEdit.appendChild(document.createElement("i"));  //create the <i></i> for the icon 
@@ -57,10 +57,11 @@ function taskSubmit(){
     let taskInputValue = document.getElementById('task-input').value;
     console.log(taskInputValue);
     if (taskInputValue) {
-        showTaskList(taskInputValue);
         createTaskDb(taskInputValue);
+        
     }
-} 
+        
+};
 
 function createTaskDb (taskInputValue){
     $.ajax({
@@ -69,12 +70,14 @@ function createTaskDb (taskInputValue){
         dataType  : 'json',
         data      : {"task" : taskInputValue},
         success: function(answer) {
-            console.log(answer)
+            console.log(answer);
+            showTaskList(taskInputValue,answer.id)
         },
         error: function() {
             console.error("No es posible completar la operación");
         }
     });
+    
 }
 
 
@@ -85,10 +88,11 @@ function editTask(){
     let div  = li.querySelector('div');
     li.insertAdjacentHTML('afterbegin',`<input placeholder="${div.innerHTML}">`);
 
-    //li.appendChild(document.createElement('span'))
-
-    li.insertAdjacentHTML('beforeend',`<button class='edit-submit'><i class="far fa-check-square"></i>`); // create the sumit button
-    li.insertAdjacentHTML('beforeend',`<button class='edit-cancel'><i class="far fa-window-close"></i>`); // create the cancel button
+    li.appendChild(document.createElement('span'));
+    let newSpan = li.lastElementChild;
+    newSpan.setAttribute('class','button-wrapers');
+    newSpan.insertAdjacentHTML('beforeend',`<button class='edit-submit'><i class="far fa-check-square"></i>`); // create the sumit button
+    newSpan.insertAdjacentHTML('beforeend',`<button class='edit-cancel'><i class="far fa-window-close"></i>`); // create the cancel button
 
     //lets hide the old task (<div>)and the old button 
     div.style.display = 'none';
@@ -97,7 +101,7 @@ function editTask(){
 
     //if we click submit
     let buttonSubmit = li.querySelector ('.edit-submit');
-    buttonSubmit.addEventListener('click',clickEditSubmit)
+    buttonSubmit.addEventListener('click',clickEditSubmit);
     
 
     
@@ -108,12 +112,11 @@ function editTask(){
 }
     //if we click submit
 function clickEditSubmit(){
-    let parent = this.parentNode;
+    let parent = this.parentNode.parentNode;
     let input = parent.querySelector('input').value;
-    let taskPosition = parent.querySelector('div')
-    let oldButton = parent.querySelector('.button-wrapers')
+    let taskPosition = parent.querySelector('div');
+    let oldButton = parent.querySelector('.button-wrapers');
     
-    parent.lastElementChild.remove();
     parent.lastElementChild.remove();
     parent.firstElementChild.remove();
 
@@ -142,18 +145,17 @@ function clickEditSubmit(){
 
     //if we click cancel 
 function clickEditCancel (){  
-    let parent = this.parentNode;
-    parent.lastElementChild.remove();
+    let parent = this.parentNode.parentNode;
     parent.lastElementChild.remove();
     parent.firstElementChild.remove();
-    parent.querySelector('div').style.display = '';
+    parent.querySelector('.task-info').style.display = '';
     parent.querySelector('.button-wrapers').style.display = '';
 }
 
      // DELETE TASK
 function deleteTask (){
     parent = this.parentNode.parentNode ;
-    let taskPosition = parent.querySelector('div')
+    let taskPosition = parent.querySelector('div');
 
     $.ajax({
         url: '/task',
