@@ -36,7 +36,7 @@ function showTaskList(taskValue,taskId){
     const newButtomEdit = newSpan.lastElementChild;
     newButtomEdit.setAttribute('class','edit-button');
     newButtomEdit.addEventListener('click',editTask);
-
+    
     newButtomEdit.appendChild(document.createElement("i"));  //create the <i></i> for the icon 
     const newIEdit = newButtomEdit.lastElementChild;
     newIEdit.setAttribute('class',"far fa-edit");
@@ -171,4 +171,32 @@ function deleteTask (){
             alert("No es posible completar la operación");
         }   
     });
+}
+    // DISPLAY FOOTER CV 
+function modifyDisplayCv (){
+
+    if (itIsDisplayed) {
+        console.log(itIsDisplayed);
+        buttonDisplayInfoCv.style.display ='none' ;
+        buttonHideInfoCv.style.display ='';
+        itIsDisplayed = false;
+
+    }else{
+        console.log(itIsDisplayed);
+        buttonDisplayInfoCv.style.display ='';
+        buttonHideInfoCv.style.display ='none';
+        itIsDisplayed = true;
+
+    }
+}
+
+function changeCssDisplayCv (itIsDisplayed){
+    let footer = document.querySelector('footer');
+    if (itIsDisplayed){
+
+    }else{
+
+
+    }
+
 }
