@@ -153,6 +153,17 @@ function clickEditCancel (){
 }
 
      // DELETE TASK
+
+function deleteTaskHandler (){
+    const actionsConfirmSection = document.getElementsByClassName('actions-confirm');
+
+    actionsConfirmSection.appendChild(document.createElement('span'));
+    let newSpan = li.lastElementChild;
+    newSpan.setAttribute('class','button-wrapers');
+    newSpan.insertAdjacentHTML('beforeend',`<button class='edit-submit'><i class="far fa-check-square"></i>`); // create the sumit button
+    newSpan.insertAdjacentHTML('beforeend',`<button class='edit-cancel'><i class="far fa-window-close"></i>`); // create the cancel button
+}
+
 function deleteTask (){
     parent = this.parentNode.parentNode ;
     let taskPosition = parent.querySelector('div');
@@ -179,12 +190,14 @@ function modifyDisplayCv (){
         console.log(itIsDisplayed);
         buttonDisplayInfoCv.style.display ='none' ;
         buttonHideInfoCv.style.display ='';
+        changeCssDisplayCv(itIsDisplayed);
         itIsDisplayed = false;
 
     }else{
         console.log(itIsDisplayed);
         buttonDisplayInfoCv.style.display ='';
         buttonHideInfoCv.style.display ='none';
+        changeCssDisplayCv(itIsDisplayed);
         itIsDisplayed = true;
 
     }
@@ -192,11 +205,28 @@ function modifyDisplayCv (){
 
 function changeCssDisplayCv (itIsDisplayed){
     let footer = document.querySelector('footer');
+
     if (itIsDisplayed){
+        footer.animate([
+            {//from
+            height : '30px' 
+
+        },  {//to
+            height : '130px'
+        }],500);
+        footer.style.height = '130px';
+        footer.lastElementChild.style.display = '';
 
     }else{
+        footer.animate([
+            {//from
+            height : '130px' 
 
-
+        },  {//to
+            height : '30px'
+        }],500);
+        footer.style.height = '30px';
+        footer.lastElementChild.style.display = 'none';
     }
 
 }
