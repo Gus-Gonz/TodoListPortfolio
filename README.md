@@ -6,7 +6,7 @@ The idea with the DB is to implement an Registration module so each user can hav
 
 # Note 
 
-It has all the Documents requiered to be hosted in Heroku , here you can check a Live example https://todolist-portfolio.herokuapp.com/
+Check our branch deployed-heroku . It has all the Documents requiered to be hosted in Heroku , here you can check a Live example https://todolist-portfolio.herokuapp.com/
 
 # Made by http://gusgonz.com/
 
