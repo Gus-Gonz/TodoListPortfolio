@@ -4,11 +4,11 @@ A fully functional TO-DO List web app made with Python (Flask) in the backend, S
 
 The idea with the DB is to implement an Registration module so each user can have their own task hosted in our app (Under development) 
 
-#Note 
+# Note 
 
 It has all the Documents requiered to be hosted in Heroku , here you can check a Live example https://todolist-portfolio.herokuapp.com/
 
-#Made by http://gusgonz.com/
+# Made by http://gusgonz.com/
 
 
 
